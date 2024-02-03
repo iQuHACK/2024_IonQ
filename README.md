@@ -14,3 +14,5 @@ Dive into the realm of quantum mechanics with a twist of science fiction in our 
 Get ready to unleash your imagination and technical skills in this fusion of quantum science and creative storytelling. Your story should not only entertain but also enlighten, demonstrating the fascinating interplay between quantum mechanics and our daily lives. Embrace this opportunity to explore the quantum universe in the most creative way possible.
 
 Have fun, and let your creativity quantum leap!
+
+> Get an API key from [IonQ Cloud](https://cloud.ionq.com/settings/keys)
