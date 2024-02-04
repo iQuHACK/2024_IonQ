@@ -1,77 +1,63 @@
-
-
 import networkx as nx
 from asciicode import graph_to_ascii
 
-def createGraph():
-    '''
-    Creates a graph and returns it
-    '''
-    return nx.Graph()
+class Graph:
+
+    def __init__(self) -> None:
+    
+        '''
+        Creates a graph and returns it
+        '''
+        self.graph = nx.Graph()
+        self.potential_node_dic = {'q0' : ['q1', 'q2'], 'q1' : ['q3', 'q4']}
+        self.graph.add_node("q0")
+        self.graph.add_node("q1")
+        self.graph.add_node("q2")
 
 
-def initGraph(graph):
-    '''
-    Initializes the graph with the nodes and returns a dictionary of potential nodes
-    '''
+    def logging(self, log = False):
+        '''
+        Logs the graph in ascii art
+        '''
 
-    potential_node_dic = {'q0' : ['q1', 'q2'], 'q1' : ['q3', 'q4']}
+        ascii_art = graph_to_ascii(self.graph)
 
-    graph.add_node("q0")
-    graph.add_node("q1")
-    graph.add_node("q2")
-
-    return potential_node_dic
+        if log:
+            print(ascii_art)
 
 
-def logging(graph, log = False):
-    '''
-    Logs the graph in ascii art
-    '''
+    def connect(self, q0, qx):
+        '''
+        Connects q0 to qx and updates the potential_node_dic
+        '''
+        self.graph.add_edge(q0, qx)
+        
+        if qx in self.potential_node_dic.keys():   
+            for node in self.potential_node_dic[qx]:
+                self.potential_node_dic[q0].append(node)
+                self.graph.add_node(node)
 
-    ascii_art = graph_to_ascii(graph)
+        self.potential_node_dic[q0].remove(qx)
 
-    if log:
-        print(ascii_art)
-
+  
+graphObj = None 
+flag = False
 
 def getPotentialNodeDic():
     '''
     Returns the potential node dictionary
     '''
+    global graphObj, flag
+    if not flag:
+        graphObj = Graph()
+        flag = True
 
-    return potential_node_dic
-
-
-def connect(q0, qx, graph, potential_node_dic):
-    '''
-    Connects q0 to qx and updates the potential_node_dic
-    '''
-    graph.add_edge(q0, qx)
-    
-    if qx in potential_node_dic.keys():   
-        for node in potential_node_dic[qx]:
-            potential_node_dic[q0].append(node)
-            graph.add_node(node)
-
-    potential_node_dic[q0].remove(qx)
+    return graphObj.potential_node_dic
 
 def setConnection(qx):
     '''
     Sets a connection from q0 to qx
     '''
-
-    connect('q0', qx, graph, potential_node_dic)
-    logging(graph, True)
-
-
-# MAIN
-graph = createGraph()
-potential_node_dic = initGraph(graph)
-
-
-## TESTING (MODULAR)
-# print(getPotentialNodeDic())
-# setConnection('q1')
-# print(getPotentialNodeDic())
+    graphObj.connect('q0', qx)
+    graphObj.logging( True)
 
