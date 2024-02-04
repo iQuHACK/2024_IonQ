@@ -5,9 +5,6 @@ import networkx as nx
 from asciicode import graph_to_ascii
 import random
 
-from backend_game import sendResponseCode
-
-
 def startScreen():
     '''
     Prints the start screen of the game
@@ -41,6 +38,8 @@ def askUser(list_of_scenarios, list_of_names, n_times = 1, cooldown = 0):
     userInput = ""
 
     for i in range(n_times):
+
+        statusCode = 404
 
         if cooldown == 0:
             scenario, name = printScenarios(list_of_scenarios, list_of_names)
@@ -76,14 +75,6 @@ def getStatusCode():
     Returns the status code
     '''
     return statusCode
-
-def checkResponse():
-    '''
-    Checks the response code
-    '''
-    if sendResponseCode() == 200:
-        statusCode = 404
-
     
 
 

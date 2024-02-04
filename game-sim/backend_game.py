@@ -91,13 +91,9 @@ def add_alice_interaction(qc, i, data):
         qc.compose(le, i, inplace=True)
 
 
-backend_stat = 404
-def sendRsponseCode():
-    return backend_stat
-
 
 def make_contact(all_people):
-    while getStatusCode() != 200:
+    if getStatusCode() == 200:
 
         backend_stat = 200
         checkResponse()
