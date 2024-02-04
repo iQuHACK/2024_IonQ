@@ -5,7 +5,7 @@ from qiskit.circuit.library import QFT
 from qiskit.quantum_info import Statevector
 from qiskit.visualization import plot_bloch_multivector
 
-from qiskit_ionq import IonQProvider 
+# from qiskit_ionq import IonQProvider 
 
 #Call provider and set token value
 # provider = IonQProvider(token='EDEq7Meo9Re0MIVV2loVBe2hZJCUG4VY')
@@ -17,6 +17,7 @@ import pandas as pd
 # plotting
 import matplotlib.pyplot as plt
 from ascii import getPotentialNodeDic, setConnection
+from interactiveAscii import *
 
 
 def normalize_data(data):
@@ -87,28 +88,42 @@ def add_alice_interaction(qc, i, data):
         le = life_event()
         qc.compose(le, i, inplace=True)
 
+
+backend_stat = 404
+def sendRsponseCode():
+    return backend_stat
+
+
 def make_contact(all_people):
-    graph_dic = getPotentialNodeDic()
-    # TODO: Add UI
-    alice_potential_contacts = None
-    if (graph_dic.get('q0') != None):
-        alice_potential_contacts = graph_dic.get('q0')
-    best_score = 0
-    best_contact = None
+    if getStatusCode() == 200:
 
-    # add people with highest gain
-    for contact in alice_potential_contacts:
-        score = np.sum(all_people[contact])
-        if(score > best_score):
-            best_score = score
-            best_contact = contact
+        backend_stat = 200
+        checkResponse()
+        
+        if getStatusCode() == 404:
+            backend_stat = 404
 
-    if(best_contact != None):
-        setConnection(best_contact)
-        best_contact_id = int(best_contact[1:]) - 1
-        # print(best_contact_id)
-        return best_contact_id
-    return 0
+        graph_dic = getPotentialNodeDic()
+        # TODO: Add UI
+        alice_potential_contacts = None
+        if (graph_dic.get('q0') != None):
+            alice_potential_contacts = graph_dic.get('q0')
+        best_score = 0
+        best_contact = None
+
+        # add people with highest gain
+        for contact in alice_potential_contacts:
+            score = np.sum(all_people[contact])
+            if(score > best_score):
+                best_score = score
+                best_contact = contact
+
+        if(best_contact != None):
+            setConnection(best_contact)
+            best_contact_id = int(best_contact[1:]) - 1
+            # print(best_contact_id)
+            return best_contact_id
+        return 0
 
 def get_user_input(all_people):
     action = str(input('input your choice <person_id  crx|crz>:'))

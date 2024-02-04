@@ -5,6 +5,8 @@ import networkx as nx
 from asciicode import graph_to_ascii
 import random
 
+from backend_game import sendResponseCode
+
 
 def startScreen():
     '''
@@ -27,9 +29,11 @@ def printScenarios(list_of_scenarios, list_of_names):
     list_of_names.pop(rand)
     return ret_scenario, ret_name
 
-
+statusCode = 404
 
 def askUser(list_of_scenarios, list_of_names, n_times = 1, cooldown = 0):
+
+    global statusCode, graphObj
     '''
     Asks the user for input
     '''
@@ -51,23 +55,42 @@ def askUser(list_of_scenarios, list_of_names, n_times = 1, cooldown = 0):
         if (userInput == "y" and cooldown == 0):
             potential_node_dic = getPotentialNodeDic()
             potential_node_dic["q0"].append(name)
-            logging(graph, True)
+            graphObj.logging(True)
             cooldown = 3
+            statusCode = 200
             
         elif (userInput == "n"):
             print("You chose to stay")
-            logging(graph, True)
+            graphObj.logging(True)
             cooldown = cooldown - 1 if cooldown > 0 else 0
+            statusCode = 200
 
         else:
             print("You cannot make a choice yet")
-            logging(graph, True)
+            graphObj.logging(True)
             cooldown = cooldown - 1 if cooldown > 0 else 0
+            statusCode = 200
 
-            
+def getStatusCode():
+    '''
+    Returns the status code
+    '''
+    return statusCode
+
+def checkResponse():
+    '''
+    Checks the response code
+    '''
+    if sendResponseCode() == 200:
+        statusCode = 404
+
+    
+
 
 list_of_scenarios = SCENARIOS[:]
 list_of_names = SCENARIOS_NAMES[:]
 cooldown = 0
+
+getPotentialNodeDic()
 startScreen()
 askUser(list_of_scenarios, list_of_names, 13)
