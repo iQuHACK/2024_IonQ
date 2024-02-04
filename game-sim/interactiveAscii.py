@@ -54,19 +54,19 @@ def askUser(list_of_scenarios, list_of_names, n_times = 1, cooldown = 0):
         if (userInput == "y" and cooldown == 0):
             potential_node_dic = getPotentialNodeDic()
             potential_node_dic["q0"].append(name)
-            graphObj.logging(True)
+            # graphObj.logging(True)
             cooldown = 3
             statusCode = 200
             
         elif (userInput == "n"):
             print("You chose to stay")
-            graphObj.logging(True)
+            # graphObj.logging(True)
             cooldown = cooldown - 1 if cooldown > 0 else 0
             statusCode = 200
 
         else:
             print("You cannot make a choice yet")
-            graphObj.logging(True)
+            # graphObj.logging(True)
             cooldown = cooldown - 1 if cooldown > 0 else 0
             statusCode = 200
 
