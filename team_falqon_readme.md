@@ -49,10 +49,12 @@ In "Your Wonderland, Alice," we present a compelling narrative that transforms t
 Follow these steps to experience "Your Wonderland, Alice":
 
 To run a simulation of possible interactions:
-1. Navigate to the simulation folder and run `backend_sim.ipynb`.
+1. Navigate to the 'simulation' folder and run `backend_sim.ipynb`.
+2. You should be able to see Alice's social interaction graphs grow with time!
 
 To run a game with possible interactions:
-1. Navigate to the game folder and run `backend_game.py`.
+1. Navigate to the 'game' folder and run `backend_game.py`.
+2. You should be able to make decisions from the perspective of Alice, running on a quantum simulator backend!
 
 See PDF for the full storyline of Alice!
 
