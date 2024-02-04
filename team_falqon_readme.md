@@ -68,3 +68,6 @@ See PDF for the full storyline of Alice!
 
 Enjoy your adventure in Wonderland!
 Professional networking, now made quantum. (TM)
+
+Slides link: https://docs.google.com/presentation/d/19Labb4im_o9X8df9W6Xwyb8P2xyy7DJsnExNSNEOs30/edit?usp=share_link
+
