@@ -36,6 +36,10 @@ In "Your Wonderland, Alice," we present a compelling narrative that transforms t
 
 ### Circuit Construction
 
+<p align="center">
+  <img src="./images/circuit.png" />
+</p>
+
 1. **Phase 1 - Personality Encoding**: Random parametrized r-gates (yellow gates) encode the personality of each potential network candidate into their respective qubits.
 
 2. **Phase 2 - Entangling Connections**: Entangling gates (green gates) represent the influence and connection between individuals. The circuit evolves over multiple time steps, increasing the number of connections and their impact on the player's quantum state.
