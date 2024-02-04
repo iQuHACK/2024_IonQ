@@ -9,7 +9,7 @@ class Graph:
         Creates a graph and returns it
         '''
         self.graph = nx.Graph()
-        self.potential_node_dic = {'q0' : ['q1', 'q2'], 'q1' : ['q3', 'q4']}
+        self.potential_node_dic = {'q0' : ['q1', 'q2'], 'q1' : ['q3', 'q4'], 'q3' : ['q5'], 'q5' : ['q6']}
         self.graph.add_node("q0")
         self.graph.add_node("q1")
         self.graph.add_node("q2")
